@@ -147,7 +147,7 @@
     iniCSSSet();
 
     var tdOLD;//2023/04/27追加
-
+    let tdOLDColor;  // 20231223 追加
     // 23-07-04 シートが変更されたときに実行される。----------------------
 
     let select = document.querySelector('[name="sheetSelect"]');
@@ -175,7 +175,7 @@
         let fileURL;
         let splitURL;
         for (var j = 1; j < sheetDatas[i].length; j++) {
-          fileURL = sheetDatas[i][j][4];
+          fileURL = sheetDatas[i][j][3];
           splitURL = fileURL.split("/");
           fileURL = "https://drive.google.com/uc?id=" + splitURL[5];
           mp3Tab.push(fileURL);
@@ -242,19 +242,31 @@
         table.appendChild(tbody);
         for (let j = 0; j < sheetDatas[i].length; j++) {
           tr = document.createElement('tr');
+          let mphjKubun;
           for (let k = 0; k < sheetDatas[i][j].length - 1; k++) {
-            td = document.createElement('td');
-            td.textContent = sheetDatas[i][j][k];
-            if (k === 0) {
-              td.setAttribute('onclick', 'speakMp3(this)');
-              td.setAttribute('class', 'clkBtn');
-            } else if (k === 1) {
-              td.setAttribute('onclick', 'speakData(this)');
-              td.setAttribute('class', 'clkBtn');
+            
+            if (k === 1) {
+              mphjKubun = sheetDatas[i][j][1];
 
             } else {
+              td = document.createElement('td');
+              td.textContent = sheetDatas[i][j][k];
+              if (mphjKubun === 'm') {
+                td.setAttribute('onclick', 'speakMp3(this)');
+                td.setAttribute('class', 'clkBtn');
+                td.style.backgroundColor = "#fffacd";
+                
+              } else if (mphjKubun === 'h') {
+                td.setAttribute('onclick', 'speakData(this)');
+                td.setAttribute('class', 'clkBtn');
+                td.style.backgroundColor = "#fffacd";
+
+              } else {
+
+              }
 
             }
+            
             tr.appendChild(td);
 
           }
@@ -279,9 +291,11 @@
         //2023/04/27 追加　背景色
         if (tdOLD === undefined) {
           tdOLD = param1;
+          tdOLDColor = tdOLD.style.backgroundColor;
         } else {
-          tdOLD.style.backgroundColor = null;
+          tdOLD.style.backgroundColor = tdOLDColor;
           tdOLD = param1;
+          
         }
         //2023/04/27 追加　背景色
 
@@ -313,8 +327,9 @@
       //2023/04/27 追加　背景色
       if (tdOLD === undefined) {
         tdOLD = param1;
+        tdOLDColor = tdOLD.style.backgroundColor;
       } else {
-        tdOLD.style.backgroundColor = null;
+        tdOLD.style.backgroundColor = tdOLDColor;
         tdOLD = param1;
       }
       //2023/04/27 追加　背景色
