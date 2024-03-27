@@ -125,7 +125,7 @@
   <!-- <script src="./get_post_gss.js"></script> -->
   <script>
     // スプレッドシート　列　定数定義
-    const END_POINT = "https://script.google.com/macros/s/AKfycbz2h50-ANvCRptiqwX039N5rMSpRwIMVYb0Gk2v54x5YIi2Zw0TbRHxl2sesUbQURb0/exec";
+    const END_POINT = "https://script.google.com/macros/s/AKfycbx-Yqdy1alTx1eim8SzBD4mWrlbvWatIQU5-q3QSELj_YACqzJzBw9MzYGNz1es2BTP/exec";
 
     let sheetIndex;  // 現在処理中のシートのindex
     let mp3Start = false;
@@ -176,8 +176,8 @@
         let splitURL;
         for (var j = 1; j < sheetDatas[i].length; j++) {
           fileURL = sheetDatas[i][j][3];
-          splitURL = fileURL.split("/");
-          fileURL = "https://drive.google.com/uc?id=" + splitURL[5];
+          // splitURL = fileURL.split("/");
+          // fileURL = "https://drive.google.com/uc?id=" + splitURL[5];
           mp3Tab.push(fileURL);
         }
         mp3TabAll.push(mp3Tab);
